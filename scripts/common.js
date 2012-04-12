@@ -1,0 +1,14 @@
+/**
+ * @author piecioshka
+ * @date 12.04.12 23:12
+ */
+AREA_WIDTH = 400;
+AREA_HEIGHT = 200;
+
+AREA_MARGIN_TOP = 20;
+AREA_MARGIN_LEFT = 20;
+
+VERTEX_WIDTH = 20;
+VERTEX_HEIGHT = 20;
+
+COLOR_GREEN = 'rgb(156,255,40)';
