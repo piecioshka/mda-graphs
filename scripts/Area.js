@@ -6,7 +6,6 @@
     "use strict";
     /** @namespace */
     var Area = function () {
-        console.log("new graphs.Area()");
         this.canvas = null;
         this.context = null;
         this.is_selected = false;
@@ -76,7 +75,6 @@
     Area.prototype.add_vertex = function () {
         var left = parseInt((Math.random() * (AREA_WIDTH - VERTEX_WIDTH)).toFixed(0), 10);
         var top = parseInt((Math.random() * (AREA_HEIGHT - VERTEX_HEIGHT)).toFixed(0), 10);
-        // console.log("left: ", left, "top: ", top);
         this.vertex_coords.push([left, top]);
         var cords = { x: left, y: top };
         this._paint_vertex(cords);
