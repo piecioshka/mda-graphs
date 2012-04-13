@@ -80,6 +80,7 @@
         this.vertex_coords.push([left, top]);
         var cords = { x: left, y: top };
         this._paint_vertex(cords);
+        this.paint_all_numbers();
         return cords;
     };
     Area.prototype._paint_vertex = function (cords) {
@@ -94,8 +95,8 @@
         this.vertex_coords.forEach(function (vertex, iterator) {
             var x = vertex[0] - cords.x;
             var y = vertex[1] - cords.y;
-            var left = Math.modulo(x) <= VERTEX_WIDTH;
-            var top = Math.modulo(y) <= VERTEX_HEIGHT;
+            var left = Math.abs(x) <= VERTEX_WIDTH;
+            var top = Math.abs(y) <= VERTEX_HEIGHT;
             if (left && top) {
                 result = vertex;
                 id = iterator;
@@ -105,6 +106,17 @@
             id: id,
             cords: result
         };
+    };
+    /******************** NUMBERS ********************/
+    Area.prototype.paint_all_numbers = function () {
+        var vertex_number = 1;
+        var self = this;
+        this.vertex_coords.forEach(function (cords) {
+            self.context.fillStyle = COLOR_BLACK;
+            self.context.font = 'bold 15px sans-serif';
+            self.context.fillText(vertex_number, cords[0] + 6, cords[1] + 15);
+            vertex_number++;
+        });
     };
     /******************** EVENTS ********************/
     Area.prototype._onmousedown = function () {
@@ -128,6 +140,7 @@
                 this._replace_all_edges_point(this.vertex_coords[vertex.id], cords);
                 this.vertex_coords[vertex.id] = [cords.x, cords.y];
                 this.paint_all_vertex();
+                this.paint_all_numbers();
                 this.paint_all_edges();
             }
         }
