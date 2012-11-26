@@ -1,19 +1,30 @@
-/**
- * @author piecioshka
- * @date 12.04.12 22:49
- */
 (function (global) {
     "use strict";
-    /** @namespace */
-    var Area = function () {
+
+    function change_cursor_to_hand() {
+        var canvas = document.getElementsByTagName("canvas")[0];
+        canvas.style.cursor = "pointer";
+    }
+
+    function restore_cursor() {
+        var canvas = document.getElementsByTagName("canvas")[0];
+        canvas.style.cursor = "default";
+    }
+
+    /**
+     * @constructor
+     */
+    function Area() {
         this.canvas = null;
         this.context = null;
         this.is_selected = false;
         this.vertex_coords = [];
         this.edge_points = [];
+
         this.init();
         this.bind_events();
-    };
+    }
+
     Area.prototype.init = function () {
         this.canvas = document.createElement("canvas");
         this.canvas.id = "area";
@@ -22,12 +33,14 @@
         document.body.appendChild(this.canvas);
         this.context = this.canvas.getContext("2d");
     };
+
     Area.prototype._get_center_cords_of_point = function (cords) {
         return {
             x: cords.x + VERTEX_WIDTH / 2,
             y: cords.y + VERTEX_HEIGHT / 2
         };
     };
+
     Area.prototype._clear = function () {
         this.context.clearRect(0, 0, AREA_WIDTH, AREA_HEIGHT);
         var w = this.canvas.width;
@@ -40,12 +53,14 @@
             this._paint_edge(points[0], points[1]);
         }.bind(this));
     };
+
     Area.prototype.add_path = function (p1, p2) {
         p1 = this._get_center_cords_of_point(p1);
         p2 = this._get_center_cords_of_point(p2);
         this._paint_edge(p1, p2);
         this.edge_points.push([p1, p2]);
     };
+
     Area.prototype._paint_edge = function (p1, p2) {
         this.context.lineWidth = 1;
         this.context.beginPath();
@@ -53,6 +68,7 @@
         this.context.lineTo(p2.x, p2.y);
         this.context.stroke();
     };
+
     Area.prototype._replace_all_edges_point = function (point, cords) {
         var self = this;
         this.edge_points.forEach(function (edge_point, iterator) {
@@ -65,13 +81,16 @@
             });
         });
     };
+
     /******************** VERTEX ********************/
+
     Area.prototype.paint_all_vertex = function () {
         this._clear();
         this.vertex_coords.forEach(function (cords) {
             this._paint_vertex({ x: cords[0], y: cords[1] });
         }.bind(this));
     };
+
     Area.prototype.add_vertex = function () {
         var left = parseInt((Math.random() * (AREA_WIDTH - VERTEX_WIDTH)).toFixed(0), 10);
         var top = parseInt((Math.random() * (AREA_HEIGHT - VERTEX_HEIGHT)).toFixed(0), 10);
@@ -81,12 +100,14 @@
         this.paint_all_numbers();
         return cords;
     };
+
     Area.prototype._paint_vertex = function (cords) {
         this.context.rect(cords.x, cords.y, VERTEX_WIDTH, VERTEX_HEIGHT);
         this.context.fillStyle = COLOR_GREEN;
         this.context.fill();
         this.context.stroke();
     };
+
     Area.prototype._get_vertex = function (cords) {
         var result = null;
         var id = null;
@@ -105,7 +126,9 @@
             cords: result
         };
     };
+
     /******************** NUMBERS ********************/
+
     Area.prototype.paint_all_numbers = function () {
         var vertex_number = 1;
         var self = this;
@@ -116,10 +139,15 @@
             vertex_number++;
         });
     };
+
     /******************** EVENTS ********************/
+
     Area.prototype._onmousedown = function () {
         this.is_selected = true;
+
+        change_cursor_to_hand();
     };
+
     Area.prototype._onmousemove = function (evt) {
         if (this.is_selected) {
             var cords = {
@@ -143,15 +171,21 @@
             }
         }
     };
+
     Area.prototype._onmouseup = function () {
         if (this.is_selected) {
             this.is_selected = false;
+            restore_cursor();
         }
     };
+
     Area.prototype.bind_events = function () {
         this.canvas.addEventListener('mousedown', this._onmousedown.bind(this), false);
         this.canvas.addEventListener('mousemove', this._onmousemove.bind(this), false);
         this.canvas.addEventListener('mouseup', this._onmouseup.bind(this), false);
     };
+
+    // public API
     global.graphs.Area = Area;
+
 }(this));

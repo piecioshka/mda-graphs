@@ -1,8 +1,0 @@
-#area {
-    width: 400px;
-    height: 200px;
-    margin: 10px;
-    /* css3 */
-    box-shadow: #000000 0 0 2px;
-    -webkit-box-shadow: #000000 0 0 2px;
-}
