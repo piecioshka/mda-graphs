@@ -64,8 +64,8 @@
     Area.prototype._paint_edge = function (p1, p2) {
         this.context.lineWidth = 1;
         this.context.beginPath();
-        this.context.moveTo(p1.x, p1.y);
-        this.context.lineTo(p2.x, p2.y);
+        this.context.moveTo(p1.x || p1[0], p1.y || p1[1]);
+        this.context.lineTo(p2.x || p2[0], p2.y || p2[1]);
         this.context.stroke();
     };
 
@@ -75,7 +75,7 @@
             edge_point.forEach(function (edpo, number) {
                 var orig = edpo;
                 var copy = self._get_center_cords_of_point({ x: point[0], y: point[1]});
-                if (orig.compare(copy)) {
+                if (_.isEqual(orig, copy)) {
                     self.edge_points[iterator][number] = self._get_center_cords_of_point(cords);
                 }
             });
@@ -91,7 +91,7 @@
         }.bind(this));
     };
 
-    Area.prototype.add_vertex = function () {
+    Area.prototype.create_vertex = function () {
         var left = parseInt((Math.random() * (AREA_WIDTH - VERTEX_WIDTH)).toFixed(0), 10);
         var top = parseInt((Math.random() * (AREA_HEIGHT - VERTEX_HEIGHT)).toFixed(0), 10);
         this.vertex_coords.push([left, top]);
