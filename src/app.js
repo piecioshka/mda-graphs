@@ -121,9 +121,7 @@ define([
             var app = $("#app");
             app.css({
                 'width': this.AREA_WIDTH,
-                'height': this.AREA_HEIGHT,
-                'margin-top': (-1) * this.AREA_HEIGHT / 2,
-                'margin-left': (-1) * this.AREA_WIDTH / 2
+                'height': this.AREA_HEIGHT
             }).html(this.canvas);
             this.ctx = this.canvas.get(0).getContext('2d');
         },
