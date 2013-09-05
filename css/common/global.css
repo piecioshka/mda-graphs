@@ -1,0 +1,11 @@
+* {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none; /* Disable selection/Copy of UIWebView */
+}
+
+#app {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border: 1px solid #3a3a3a;
+}
