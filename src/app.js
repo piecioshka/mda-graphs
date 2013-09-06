@@ -5,20 +5,12 @@ define([
 ], function ($, _, Events) {
     'use strict';
 
-    function getLayerX(event) {
-        var layerX = event.layerX;
-        if (_.isFunction(event.eventObject)) {
-            layerX = event.eventObject().layerX;
-        }
-        return layerX;
+    function getOffsetX(e) {
+        return e.offsetX || e.eventObject().layerX;
     }
 
-    function getLayerY(event) {
-        var layerY = event.layerY;
-        if (_.isFunction(event.eventObject)) {
-            layerY = event.eventObject().layerY;
-        }
-        return layerY;
+    function getOffsetY(e) {
+        return e.offsetY || e.eventObject().layerY;
     }
     
     var App = {
@@ -53,7 +45,7 @@ define([
 
             function startAction(e) {
                 // Events.log('mousedown', e);
-                self.movableVertex = self._getNearVertex(getLayerX(e), getLayerY(e));
+                self.movableVertex = self._getNearVertex(getOffsetX(e), getOffsetY(e));
                 if (self.movableVertex) {
                     self.isDrag = true;
                 }
@@ -65,8 +57,8 @@ define([
             function moveAction(e) {
                 if (self.isDrag === true) {
                     // Events.log('mousedown', e);
-                    self.movableVertex.x = getLayerX(e);
-                    self.movableVertex.y = getLayerY(e);
+                    self.movableVertex.x = getOffsetX(e);
+                    self.movableVertex.y = getOffsetY(e);
 
                     self.clearViewPort();
                     self.renderPaths();
