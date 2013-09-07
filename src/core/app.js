@@ -1,8 +1,7 @@
 define([
-    'zepto',
     'underscore',
     'events'
-], function ($, _, Events) {
+], function (_, Events) {
     'use strict';
 
     function getOffsetX(e) {
@@ -41,7 +40,7 @@ define([
         },
         bindDragAndDrop: function () {
             var self = this;
-            var canvas = this.canvas.get(0);
+            var canvas = this.canvas;
 
             function startAction(e) {
                 // Events.log('mousedown', e);
@@ -106,16 +105,11 @@ define([
             });
         },
         render: function () {
-            this.canvas = $('<canvas>').attr({
-                width: this.AREA_WIDTH,
-                height: this.AREA_HEIGHT
-            });
-            var app = $("#app");
-            app.css({
-                'width': this.AREA_WIDTH,
-                'height': this.AREA_HEIGHT
-            }).html(this.canvas);
-            this.ctx = this.canvas.get(0).getContext('2d');
+            this.canvas = document.createElement('canvas');
+            this.canvas.setAttribute('width', this.AREA_WIDTH + "px");
+            this.canvas.setAttribute('height', this.AREA_HEIGHT + "px");
+            document.getElementById('app').appendChild(this.canvas);
+            this.ctx = this.canvas.getContext('2d');
         },
         clearViewPort: function () {
             this.ctx.clearRect(0, 0, this.AREA_WIDTH, this.AREA_HEIGHT);

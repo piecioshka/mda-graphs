@@ -1,12 +1,13 @@
 require.config({
+    baseUrl: './src',
     paths: {
-        'zepto': 'lib/zepto.min',
+        'microajax': 'lib/microajax.min',
         'underscore': 'lib/underscore.min',
         'events': 'lib/events.min'
     },
     shim: {
-        'zepto': {
-            'exports': '$'
+        'microajax': {
+            'exports': 'microAjax'
         },
         'underscore': {
             'exports': '_'
@@ -18,16 +19,15 @@ require.config({
 });
 
 require([
-    'zepto',
-    'app'
-],function ($, App) {
+    'microajax',
+    'core/App'
+],function (microAjax, App) {
     'use strict';
 
     function bootstrap(data) {
-        App.MATRIX = data;
+        App.MATRIX = JSON.parse(data);
         App.initialize();
     }
 
-    $.getJSON('config/matrix.json', bootstrap);
-
+    microAjax('config/matrix.json', bootstrap);
 });
