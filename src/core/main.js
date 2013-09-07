@@ -20,7 +20,7 @@ require.config({
 
 require([
     'microajax',
-    'core/App'
+    'core/app'
 ],function (microAjax, App) {
     'use strict';
 
