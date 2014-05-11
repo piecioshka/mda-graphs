@@ -1,9 +1,14 @@
+/**
+ * @author Piotr Kowalski <piecioshka@gmail.com>
+ * @see http://jsninja.pl/mda-graphs/
+ * @licence The MIT License {@link http://piecioshka.mit-license.org/}
+ */
 require.config({
-    baseUrl: './src',
+    baseUrl: './scripts',
     paths: {
-        'microajax': 'lib/microajax.min',
-        'underscore': 'lib/underscore.min',
-        'events': 'lib/events.min'
+        'microajax': 'vendor/microajax.min',
+        'underscore': 'vendor/underscore.min',
+        'events': 'vendor/events.min'
     },
     shim: {
         'microajax': {
