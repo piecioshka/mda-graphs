@@ -4,5 +4,5 @@ i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q ||
 a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
 })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-ga('create', 'UA-5140088-25', 'jsninja.pl/mda-graphs');
+ga('create', 'UA-5140088-25', 'auto');
 ga('send', 'pageview');

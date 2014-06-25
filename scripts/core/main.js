@@ -1,6 +1,6 @@
 /**
  * @author Piotr Kowalski <piecioshka@gmail.com>
- * @see http://jsninja.pl/mda-graphs/
+ * @see http://piecioshka.pl/projects/mda-graphs/
  * @licence The MIT License {@link http://piecioshka.mit-license.org/}
  */
 require.config({
