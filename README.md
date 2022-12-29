@@ -2,7 +2,7 @@
 
 Mini aplikacja pozwalająca zarządzać pozycją wierzchołków.
 
-## Demo
+## Demo 🎉
 
 <http://piecioshka.github.io/mda-graphs/>
 
