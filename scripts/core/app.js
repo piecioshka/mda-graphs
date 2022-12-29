@@ -1,6 +1,6 @@
 /**
  * @author Piotr Kowalski <piecioshka@gmail.com>
- * @see http://piecioshka.pl/projects/mda-graphs/
+ * @see https://piecioshka.github.io/mda-graphs/
  * @licence The MIT License {@link http://piecioshka.mit-license.org/}
  */
 define([
