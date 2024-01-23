@@ -1,7 +1,7 @@
 /**
  * @author Piotr Kowalski <piecioshka@gmail.com>
  * @see https://piecioshka.github.io/mda-graphs/
- * @licence The MIT License {@link http://piecioshka.mit-license.org/}
+ * @license The MIT License {@link http://piecioshka.mit-license.org/}
  */
 define([
     'underscore',
@@ -16,13 +16,13 @@ define([
     function getOffsetY(e) {
         return e.offsetY || e.eventObject().layerY;
     }
-    
+
     var App = {
         MATRIX: [],
 
         AREA_WIDTH: 400,
         AREA_HEIGHT: 200,
-    
+
         VERTEX_RADIUS: 10,
 
         vertices: [],
